@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+#PBS -N tunBar
+#PBS -l select=1:ncpus=8:mem=1gb,walltime=01:34:00
+#PBS -j oe
+    
+module purge
+module load osg-proxy
+module add anaconda3/4.3.0
+source activate my_env
+
+
+cd /scratch1/cpm2/Desktop/driVe/stanescuTewari/NewStanescuTewari/braiding/tunBar
+
+bars=${varArray}
+IFS='_' read -ra barList <<< "$bars"
+
+chemicalPotential=4
+zemValBc=0.75
+vBarPos=0
+vBarSigma=1
+alfLab=2
+
+for barHeight in "${barList[@]}"
+do
+  python barPotFull.py $chemicalPotential $zemValBc $barHeight $vBarPos $vBarSigma $alfLab
+  python barPotFull.py $chemicalPotential 1.05 $barHeight $vBarPos $vBarSigma $alfLab
+done
