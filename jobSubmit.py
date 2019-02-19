@@ -2,9 +2,9 @@ import csv, subprocess, os
 
 cwd=os.getcwd()
 
-parameter_file_full_path = cwd + '/dataTable.csv'
+parameterFileFullPath = os.path.join(cwd, 'dataTable.csv')
 
-with open(parameter_file_full_path, "r") as csvfile:
+with open(parameterFileFullPath, "r") as csvfile:
     reader = csv.reader(csvfile)
     for job in reader:
         varArrayStr = "_".join(str(var) for var in job)
