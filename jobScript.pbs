@@ -10,7 +10,7 @@ module add anaconda3/4.3.0
 source activate my_env
 
 
-cd /scratch1/cpm2/Desktop/driVe/stanescuTewari/NewStanescuTewari/braiding/tunBar
+cd $PBS_O_WORKDIR
 
 bars=${varArray}
 IFS='_' read -ra barList <<< "$bars"
